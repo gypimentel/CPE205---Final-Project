@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/submenu.css">
+    <title>Edit Sale</title>
+</head>
+<body>
+    
+    <%- include('navbar') %> 
+
+    <form action="/sales/<%= sale.sale_id %>/edit" method="POST">
+        <label for="quantity">Quantity Sold:</label>
+        <input type="number" name="quantity_sold" id="quantity_sold" value="<%= sale.quantity_sold %>" required>
+        <br><button type="submit">Update Sale</button>
+        <button type="cancel">Cancel</button>
+    </form>
+
+    <img src="/boss ronald.jpg">
+
+</body>
+</html>

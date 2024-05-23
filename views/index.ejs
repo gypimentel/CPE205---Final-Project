@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="submenu.css">
+    <title>POS System</title>
+    <style>
+        .sales-info, .low-stock-info {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 45%;
+            float: left;
+            margin-right: 20px;
+        }
+        .sales-info h3, .low-stock-info h3 {
+            margin-top: 0;
+        }
+        .low-stock-product {
+            color: red;
+        }
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .product-table th, .product-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .product-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    
+    <%- include('navbar') %> 
+    
+    <h1>Ong n Prends</h1>
+    <h2>POS System</h2>
+
+    <img src="/boss Malcolm.jpg">
+
+    <div class="sales-info">
+        <h3>Total Sales Today</h3>
+        <p>Php <%= totalSales %></p>
+    </div>
+
+    <div class="low-stock-info">
+        <h3>Products with Low Stock</h3>
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity Left</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% productsLowStock.forEach(product => { %>
+                    <tr>
+                        <td><span class="low-stock-product"><%= product.name %></span></td>
+                        <td><%= product.quantity %> units left</td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

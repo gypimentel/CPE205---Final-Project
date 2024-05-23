@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sales</title>
+</head>
+<body>
+    
+    <%- include('navbar') %> 
+
+    <table>
+        <thead>
+            <tr>
+                <th>Sale Date</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity Sold</th>
+                <th>Total</th>
+                <th>Actions</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <% sales.forEach(sale => { %>
+                <% const product = products.find(product => product.product_id === sale.product_id); %>
+                <tr>
+                    <td><%= new Date(sale.sale_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+                    <td><%= sale.product_name %></td>
+                    <td>Php <%= product.price %></td>
+                    <td><%= sale.quantity_sold %></td>
+                    <td>Php <%= sale.total_profit %></td>
+                    <td>
+                        <form action="/sales/<%= sale.sale_id %>/edit" method="GET">
+                            <button type="submit">Edit</button>
+                        </form>
+                        
+                        <form action="/sales/<%= sale.sale_id %>/delete" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <form action="/sales/add" method="GET">
+        <h1><center>Today's Profit: </center></h1>
+        <h1><center>Php <%= totalProfit %></center></h1>
+        <img src="/boss ronald.jpg">
+        <button type="submit">Add sale</button>
+    </form>    
+
+</body>
+</html>
